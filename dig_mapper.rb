@@ -17,7 +17,6 @@ class DigMapper
 
   def create_map
     @domain_list.each do |domain|
-      # info = check_domain(domain)
       @domains[domain] = DomainInfo.new(domain)
       sleep 1
     end
@@ -28,7 +27,6 @@ end
 if __FILE__ == $0
   dig = DigMapper.new('single_domain')
   dig.create_map
-
   dig.domains.keys.each do |domain_info_key|
     dig.domains[domain_info_key].to_s
   end

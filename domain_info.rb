@@ -56,8 +56,6 @@ class DomainInfo
   end
 
   def update_info(record_type, record_info)
-    # record_type = split_line[4]
-    # record_info = split_line[5]
     case record_type
       when 'A'
         @a = [] unless @a
@@ -82,6 +80,7 @@ class DomainInfo
   end
 
   def handle_txt(txt_info)
+    puts ''
     txt_info.slice!('"')
     txt_info.slice!('"')
     handle_spf(txt_info)
@@ -120,8 +119,6 @@ class DomainInfo
 
   def add_info(info, spf, key)
     @spf[spf][key] = [] unless @spf[spf].keys.include?(key)
-    # value = info
-    # value = info.split(':')[1] if info.include?(':')
     value = get_value_from_info(info, key)
     handle_include(info, spf) if info.include?(INCLUDE)
     @spf[spf][key].push(value)
@@ -137,11 +134,9 @@ class DomainInfo
 
   def handle_include(info, spf)
     @spf[spf][INCLUDE] = {} unless @spf[spf].keys.include?(INCLUDE)
-    value = info.split(':')[1]
+    domain = info.split(':')[1]
     sleep 1
-    `dig #{value} TXT`
-    dig_info = `dig #{value} ANY`
-    @spf[spf][INCLUDE][value] = DomainInfo.new(value, dig_info)
+    @spf[spf][INCLUDE][value] = DomainInfo.new(domain)
   end
 
   def to_s
@@ -170,14 +165,14 @@ class DomainInfo
       elsif @spf[key].instance_of?(Array)
         @spf[key].each { |item| puts item }
       end
-
     end if @spf
     puts
   end
 
+  # To be implmented
   def get_ips
     ips = []
-
+    return ips
   end
 
 
