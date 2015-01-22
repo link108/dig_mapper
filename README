@@ -1,0 +1,12 @@
+mapping tool for dig
+
+
+TODO
+
+-handle qualifiers
+-deal with more mechanisms
+-write to file
+-print all ips associated with a domain
+-fix printing spf
+    -add tabs
+-come up with more features?
