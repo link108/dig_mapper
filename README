@@ -2,6 +2,10 @@ mapping tool for dig
 
 
 TODO
+-I made this before  I knew of DNS::Resolv, I might scrap this and create a wrapper around DNS::Resolv for ip/domain name research.
+
+
+
 
 -handle qualifiers
 -deal with more mechanisms
